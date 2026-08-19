@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./main.css">
+  <title>HOME</title>
+</head>
+<body>
+  <%- include("partials/Navigation") %>
+  <% if(bookList.length) { %>
+    <% bookList.forEach(book => {  %>
+      <div style="height:120px; width: 200px; border: 1px solid white; margin:10px auto">
+        <div>
+          <%= book.title%>
+        </div>
+        <div>
+          <%= book.author%> 
+        </div>
+        <div>
+          <figure>
+            <img src="<%= book.image%>" alt="image book">
+            <figcaption>representa de la imagen</figcaption>
+          </figure> 
+        </div>
+        <a href="/delete/<%= book.id %>">eliminar</a>
+        <a href="/update/<%= book.id %>">actualizar</a>
+      </div>
+    <% }) %>
+  <% } else { %>
+    <p>Add one !!!</p>
+  <% } %>
+
+  
+</body>
+</html>
