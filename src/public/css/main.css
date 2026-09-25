@@ -1,0 +1,479 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #444;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+/************************************************/
+/*                                              */
+/*                  NAVIGATION                  */
+/*                                              */
+/************************************************/
+
+/* desktop-first */
+.header {
+  background-color: #000;
+  height: 80px;
+  padding: 10px 25px;
+  display: flex;
+  justify-content: space-between;
+}
+.logo {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.logo__image {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+.logo__title {
+  margin: 0;
+  margin-left: 10px;
+  color: #fff; /*este color reescribe todos los colores de un enlace*/
+  &:active {
+    transform: scale(0.96);
+  }
+  &:hover {
+    color: #f7f7d4;
+    /* color:rgb(120, 240, 212); */
+  }
+}
+.nav {
+  align-self: flex-end;
+}
+.nav__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+.nav__item {
+  margin-left: 16px;
+}
+.nav__link {
+  text-decoration: none;
+  font-size: 17px;
+  color:#fff
+}
+.nav__link:hover {
+  text-decoration: underline;
+  color: #f5f6b1;
+}
+
+/* mobile version(navigation) */
+/* breakpoints
+    576px - 768px - 992px - >1200
+*/
+@media (max-width: 767px){
+  .header {
+    justify-content: center;
+    /* padding-right: 25px !important; */
+  }
+  .logo {
+    position: relative
+  }
+  .logo__title {
+    position: absolute;
+    width: 242px;
+    top:0px;
+    left: 60px;
+  }
+  .nav {
+    width: 242px;
+    margin-left: 10px;
+    transition: margin-left 0.5s ease;
+  }
+  .nav__list {
+    justify-content: space-evenly;
+  }
+  .nav__item {
+    margin-left: 0;
+  }
+}
+
+
+
+/************************************************/
+/*                                              */
+/*                  HOME - MAIN                 */
+/*                                              */
+/************************************************/
+
+.main {
+  padding: 25px;
+  min-height: calc(100vh - 128px);
+  background-image: linear-gradient(to top left, #06405e, #6bc8bd);
+  /* background-image: linear-gradient(to bottom right, #06405e, #6bc8bd);
+   23 09 26 diseñazo*/
+}
+.container {
+  background-color: transparent;
+  max-width: 1416px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px 18px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.card {
+  height: 469px;
+  width: calc( (100% - 54px) / 4 );
+  padding: 12px 20px;
+  box-shadow: inset 0 0 5px rgb(4, 37, 63, 0.4);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  transition: width 500ms ease;
+  /* transition: all 2900ms; */
+}
+.card:hover {
+  box-shadow: inset 0 0 4px #04253f;
+  .card__links {
+    background-color: rgba(9, 40, 36, 0.73);
+  }
+}
+.card__title {
+  height: 24px;
+  text-align: center;
+  color: rgb(5, 7, 37);
+  padding-top: 1px;
+  font-size: 17px;
+}
+.card-text--overflow {
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /*
+  &:hover {
+    overflow: visible;
+    white-space: normal;
+    //z-index:soluciona el inconveniente de la superposicion 
+    del texto sobre la imagen a causa de la animacion
+    z-index: 1;
+  }
+  */
+}
+.card__image {
+  height: 365px;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+  border-radius: 2px;
+  &:hover {
+    transform: scale(1.01); 
+  }
+}
+.card__author {
+  height: 28px;
+  padding-top: 8px;
+  padding-left: 10px;
+}
+.card__links {
+  height: 28px;
+  background-color: rgba(21, 74, 70, 0.9);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 4px;
+  transition: background-color  0.7s ease;
+  border-radius: 1px;
+}
+.card__links--delete {
+    font-size: 21.5px;
+    margin-left: 14px; 
+    color: #350303;
+    &:hover {
+      transform: scale(1.07);
+      color:#111;
+    }
+}
+.card__links--update {
+    font-size: 20px;
+    color: rgb(115, 200, 72);
+    &:hover {
+      transform: scale(1.06);
+      color: rgb(154, 242, 110);
+    }
+}
+.message-empty {
+  /*toma todo el vh menos las alturas del
+   header + footer + el padding del main*/
+  min-height: calc(100vh - (128px + 50px));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.message-empty__link {
+  text-decoration: none;
+    font-size: 22px;
+    font-weight: bold;
+    color: #011617
+}
+
+/* responsive (home) */
+@media (max-width: 1389px) {  /* three elemets per row */
+  .container {
+    max-width: 1040px;
+    column-gap: 24px;
+  }
+  .card {
+    width: calc( (100% - 48px) / 3 )
+    /* los 48px representan 2 espacios de 24 px del gap-column */
+  }
+}
+@media (max-width: 1065px) {  /* two elements per row */
+  .container {
+    max-width: 700px;
+    column-gap: 28px;
+  }
+  .card {
+    width: calc( (100% - 28px) / 2 )
+  }
+}
+@media (max-width: 735px) {   /* one element per row */
+  .container {
+    max-width: 350px;
+  }
+  .card {
+    height: 470px;
+    width: 100%;
+  }
+  .card__image{
+    height: 370px
+  }
+  .card__author {
+    height: 24px;
+    padding-top: 5px;
+  }
+}
+
+/* MODAL ELIMINACIÓN LIBRO DEL HOME */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0; /*este hace que ocupe todo el viewport por el fixed*/
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal__content {
+  padding: 20px 28px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+}
+.modal__title {
+  margin: 0;
+  text-align: center;
+}
+.modal__actions {
+  display: flex;
+  justify-content: space-evenly;
+} 
+.modal__button {
+  width: 120px;
+  height: 28px;
+  font-size: 15px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  &:active {
+    transform: scale(0.96);
+  }
+}
+.modal__cancel {
+  background-color: #e0e0e0;
+  color: #333;
+}
+.modal__confirm {
+  background-color: #d9534f;
+  color: white;
+} 
+
+/* VOLVER A LA PARTE SUPERIOR DEL HOME */
+.back-to-top {
+  width: 45px;
+  height: 45px;
+  background-color: #79f087;
+  outline: 1px solid rgb(247, 247, 101);
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 4px;
+  position: fixed;
+  bottom: 35px;
+  right: 10px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .8s ease, visibility 0.3s ease; 
+  /*opcity se anima, visibility no */
+   &:active{
+    transform: scale(0.9)
+  }
+}
+.back-to-top__image {
+  height: 40px;
+}
+.back-to-top--show {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+
+/************************************************/
+/*                                              */
+/*             NEW BOOK & EDIT BOOK             */
+/*                                              */
+/************************************************/
+.main-form {
+  background-image: linear-gradient(to top left, #06405e, #6bc8bd);
+  min-height: calc( 100vh - 128px );
+  display: flex;
+  align-items: center;
+  padding: 0 60px;
+}
+.form {
+  height: 400px;
+  width: 658px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 25px;
+  border-radius: 10px;
+  box-shadow: inset 0 0 12px rgb(4, 37, 63, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.form__group {
+  height: 38px;
+  display: flex;
+  position: relative; /*para posicionar el mgs de error*/
+}
+.form__title {
+  margin: 0;
+  width: 100%;
+  font-size: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form__label {
+  background-color: rgb(6, 2, 34, 0.29);
+  color: #030515;
+  width: 120px;
+  padding-left: 5px;
+  display: flex;
+  align-items: center;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.form__input {
+  width: calc(100% - 120px);
+  padding: 0 10px;
+  border: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  /*por defecto tiene 13.33px el fz, el problema es que me corta parte de la línea oblicua de las tíldes y las eñes, para valores como 15 o 17px a más me soluciona*/
+  font-size: 15px;
+  &:focus {
+    outline: 2px solid #4f46e5;
+  }
+}
+.form__submit {
+  background-color:#51e2c8;
+  /* background-color:#2563EB; */
+  width: 100%;
+  height: 100%;
+  font-size: 15px;
+  color: #171c16;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease, transform .2s ease, font-size 0.2s;
+  border-radius: 5px;
+  &:hover {
+    background-color:#41f1d1;
+    font-size: 15.5px;
+  }
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+/*    mobile version newbook*/
+@media (max-width: 669px){
+  .form {                                 
+    height: 390px;            
+  }
+  .form__group {
+    flex-direction: column;
+    height: 56px;
+  }
+  .form__label {
+    width: 100%;
+    height: 40%;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 0;
+  }
+  .form__input {
+    width: 100%;
+    height: 60%;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 5px;
+  }
+  .form__group--small {
+    height: 35px;
+  }
+  .form__title {
+    height: 100%;
+    font-size: 26px;
+  }
+}
+/* validacion form */
+.message-error {
+  color: rgba(72, 9, 9);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding-top: 2px;
+}
+.field-invalid {
+    box-shadow: 0 0 2px #940a06, 0 0 2px #940a06, 0 0 2px #940a06, 0 0 2px #940a06;
+}
+
+
+
+/************************************************/
+/*                                              */
+/*                    FOOTER                    */
+/*                                              */
+/************************************************/
+
+.footer {
+  background-color: #59aeef;
+  height: 48px; 
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+.footer__logo-git {
+  height: 35px;
+  padding-left: 10px;
+}
+
+/*ESTE PROYECTO SE CONCLUYÓ EL 25.09.2026
+            ReALizado por Andree Coronel
+            la G nomas 
+*/

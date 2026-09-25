@@ -7,8 +7,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const __dirname = dirname(fileURLToPath(import.meta.url));
 // console.log('process.cwd(): ', process.cwd());
-// console.log(join(__dirname, "public"));
-
 
 /* SETTINGS */
 app.set("view engine", "ejs");
@@ -23,12 +21,10 @@ app.use(bookRoutes);
 
 /* middleware de errores */
 app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(500).send("Algo salió mal.");
+  res.status(500).send("Something went wrong!");
 })
 
 /* STATIC FILES */
 app.use(express.static(join(__dirname, "public")));
 
 app.listen(PORT, () => console.log(`Server up on port ${PORT}`));
-//puta hermosa vida 😉👈

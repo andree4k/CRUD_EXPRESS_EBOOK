@@ -1,36 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./main.css">
-  <title>HOME</title>
+  <%- include('partials/MetaHead.ejs') %>
+  <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  <title>Home</title>
 </head>
 <body>
   <%- include("partials/Navigation") %>
-  <% if(bookList.length) { %>
-    <% bookList.forEach(book => {  %>
-      <div style="height:120px; width: 200px; border: 1px solid white; margin:10px auto">
-        <div>
-          <%= book.title%>
-        </div>
-        <div>
-          <%= book.author%> 
-        </div>
-        <div>
-          <figure>
-            <img src="<%= book.image%>" alt="image book">
-            <figcaption>representa de la imagen</figcaption>
-          </figure> 
-        </div>
-        <a href="/delete/<%= book.id %>">eliminar</a>
-        <a href="/update/<%= book.id %>">actualizar</a>
-      </div>
-    <% }) %>
-  <% } else { %>
-    <p>Add one !!!</p>
-  <% } %>
 
+  <main class="main">
+    <% if(bookList.length) { %>
+      <div class="container">
+        <% bookList.forEach(book => {  %>
+          <article class="card" id="bookId-<%= book.id %>">
+            <div class="card__title card-text--overflow">
+              <%= book.title%>
+            </div>
+            <img class="card__image" src="<%= book.image%>" alt="book">
+            <div class="card__author card-text--overflow">
+              ~ <%= book.author%> 
+            </div>
+            <div class="card__links">
+              <a class="card__links--update" href="/update/<%= book.id %>" >
+                <i class="fa-solid fa-pencil"></i>
+              </a>
+              <a class="card__links--delete" href="/delete/<%= book.id %>">
+                <i class="fa-regular fa-trash-can"></i>
+              </a>
+            </div>
+            
+          </article>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <div class="message-empty">
+        <a href="/newbook" class="message-empty__link">ADD ONE!!!</a>
+      </div>
+    <% } %>
+  </main>
+
+  <!-- modal para confirmación de la eliminación -->
+  <div class="modal">
+    <div class="modal__content">
+      <!-- <h2 class="modal__title">Confirmar eliminación</h2> -->
+      <h2 class="modal__title">Delete Book</h2>
+
+      <p>Are you sure you want to delete this book?</p>
+      <!-- <p>¿Estás seguro de que quieres eliminar este libro?</p> -->
+
+      <div class="modal__actions">
+        <button class="modal__button modal__confirm" type="button">
+          Delete
+        </button>
+        <button class="modal__button modal__cancel" type="button">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
   
+  <!-- volver a la parte superior -->
+  <div class="back-to-top">
+    <img class="back-to-top__image" src="/images/caret-up-svgrepo-com.svg" alt="up">
+  </div>
+
+  <%- include("partials/Footer") %>
+ 
+  <script type="module" src="/js/modal-home.js"></script>
+  <script src="./js/scroll-update-save-home.js"></script>
+  <script src="./js/top-page-home.js"></script>  
+
 </body>
 </html>
+

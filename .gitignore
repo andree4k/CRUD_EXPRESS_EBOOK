@@ -1,4 +1,3 @@
 node_modules
 src/routes/test.routes.js
 src/routes/book.routes.training.js
-src/controllers/test.controller.js
