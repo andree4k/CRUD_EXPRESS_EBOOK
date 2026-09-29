@@ -28,3 +28,5 @@ app.use((err, req, res, next) => {
 app.use(express.static(join(__dirname, "public")));
 
 app.listen(PORT, () => console.log(`Server up on port ${PORT}`));
+
+/* Dedicado a mi bro RONALD ® */

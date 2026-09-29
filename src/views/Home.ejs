@@ -24,7 +24,8 @@
             </div>
             <img class="card__image" src="<%= book.image%>" alt="book">
             <div class="card__author card-text--overflow">
-              ~ <%= book.author%> 
+              <img class="author__feather" src="/images/feather-icon.svg" alt="feather">
+              <span><%= book.author%></span> 
             </div>
             <div class="card__links">
               <a class="card__links--update" href="/update/<%= book.id %>" >

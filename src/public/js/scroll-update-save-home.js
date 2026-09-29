@@ -11,6 +11,20 @@ if (queryBookId) {
     const url = new URL(window.location);
     url.search = ""; // Limpia la query string
     window.history.replaceState({}, document.title, url.pathname);
+
+    //added 29.06.2026 lógica para animar la pluma del libro en cuestion
+    // console.log(cardBookElement.children[2].querySelector('.author__feather'));
+    //console.log(cardBookElement.children[2].firstElementChild);
+    //cardBookElement.children[2].firstElementChild.classList.add('feather--spin')
+    const currentFeather = cardBookElement.children[2].firstElementChild
+    currentFeather.classList.add('feather--spin')
+    //animationend: detecta exactamente el momento en que termina una animación de CSS en un elemento
+    currentFeather.addEventListener("animationend", () => {
+        currentFeather.classList.remove("feather--spin");
+    });
+
+    /* el timing del scroll y la animacion de la pluma se soluciona usando indices para mostrar parte de los items y no todo de golpe */
+    
 }
 
  /*<script>
